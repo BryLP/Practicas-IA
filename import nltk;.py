@@ -43,7 +43,7 @@ def LemNormalize(text):
 
 # Coincidencia de palabras
 
-GREETING_INPUTS = ("hello", "hi", "greetings", "sup", "what's up","hey",)
+GREETING_INPUTS = ("hola", "hi", "greetings", "sup", "what's up","hey",)
 
 GREETING_RESPONSES = ["hi", "hey", "*nods*", "hi there", "hello", "I am glad! You are talking to me"]
 
