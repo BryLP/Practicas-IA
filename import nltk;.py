@@ -11,8 +11,8 @@ from nltk.corpus import stopwords
 
 
 #pruebas pa español
-SW = set(stopwords.words("spanish"))
-lemmer = SnowballStemmer("spanish")
+SW = set(stopwords.words('spanish'))
+lemmer = SnowballStemmer('spanish')
 
 
 f=open('C:/Users/bryan\Documents/IA practicas/minecraftS.txt','r',errors = 'ignore')
@@ -24,6 +24,17 @@ raw=raw.lower()# convierte mayusculas a minusculas
 nltk.download('punkt') # Solo para primera vez
 #nltk.download('wordnet') # Solo para primera vez
 nltk.download('stopwords')
+
+#
+
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+# Utilizar ENGLISH_STOP_WORDS de scikit-learn para stop words en inglés
+EN_STOP_WORDS = list(ENGLISH_STOP_WORDS)
+
+# Combinar stop words en inglés y español
+ALL_STOP_WORDS = EN_STOP_WORDS + SW
+
+
 
 
 sent_tokens = nltk.sent_tokenize(raw)# Convierte a lista de sentencias
@@ -60,7 +71,7 @@ def response(user_response):
     robo_response=''
     sent_tokens.append(user_response)
 
-    TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words= SW)
+    TfidfVec = TfidfVectorizer(tokenizer=LemNormalize, stop_words= ALL_STOP_WORDS)
     tfidf = TfidfVec.fit_transform(sent_tokens)
     vals = cosine_similarity(tfidf[-1], tfidf)
     idx=vals.argsort()[0][-2]
